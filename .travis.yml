@@ -7,3 +7,5 @@ jdk:
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -qq gnupg
+install: mvn install -Dgpg.skip=true -DskipTests=true
+script: mvn test -Dgpg.skip=true
