@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:guo="http://guoyukun.cn/schema/leman/guo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://guoyukun.cn/schema/leman/guo http://guoyukun.cn/schema/leman/guo/guo-1.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <util:map id="idcAliasMapping" map-class="java.util.concurrent.ConcurrentHashMap">
+        <entry key="1" value="lf"/>
+        <entry key="2" value="mjq"/>
+    </util:map>
+
+    <guo:for id="xxxww" from="1" to="4" var="index" desc="循环测试">
+        <bean id="SymbolMap{{index}}" class="java.util.HashMap">
+            <constructor-arg>
+                <map>
+                    <entry key="a" value="b{{index}}"/>
+                    <entry key="b" value-ref="idcAliasMapping"/>
+                </map>
+            </constructor-arg>
+        </bean>
+        <bean id="SymbolMap-{{index}}" class="java.util.HashMap">
+            <constructor-arg>
+                <map>
+                    <entry key="key{{index}}" value="b"/>
+                    <entry key="forInnerRef" value-ref="SymbolMap{{index}}"/>
+                </map>
+            </constructor-arg>
+        </bean>
+    </guo:for>
+
+
+</beans>
