@@ -30,7 +30,7 @@
 
     <scm>
         <connection>scm:git:https://github.com/gyk001/spring-leman.git</connection>
-        <developerConnection>scm:svn:https://svn.sonatype.org/spice/trunk/oss/oss-parent-9/spring-leman</developerConnection>
+        <developerConnection>scm:git:https://github.com/gyk001/spring-leman.git</developerConnection>
         <url>https://github.com/gyk001/spring-leman</url>
     </scm>
 
