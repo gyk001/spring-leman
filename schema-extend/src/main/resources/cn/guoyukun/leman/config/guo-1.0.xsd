@@ -12,6 +12,7 @@
     <xsd:complexType name="forType">
         <xsd:choice minOccurs="1" maxOccurs="unbounded">
             <xsd:element ref="bean:bean"/>
+            <xsd:element ref="bean:ref"/>
         </xsd:choice>
         <xsd:attribute name="id" type="xsd:string" use="optional"/>
         <xsd:attribute name="from" type="xsd:int" use="required"/>
@@ -98,4 +99,75 @@
         </xsd:complexType>
     </xsd:element>
 
+    <!-- list -->
+
+    <xsd:element name="list">
+        <xsd:annotation>
+            <xsd:documentation source="java:org.springframework.beans.factory.config.ListFactoryBean">
+                Builds a List instance of the specified type, populated with the specified content.
+            </xsd:documentation>
+            <xsd:appinfo>
+                <tool:annotation>
+                    <tool:exports type="java.util.List"/>
+                </tool:annotation>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="listOrSetType">
+                    <xsd:attribute name="id" type="xsd:string"/>
+                    <xsd:attribute name="list-class" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <tool:annotation>
+                                    <tool:expected-type type="java.lang.Class"/>
+                                    <tool:assignable-to type="java.util.List"/>
+                                </tool:annotation>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="scope" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[
+	The scope of this collection bean: typically "singleton" (one shared instance,
+	which will be returned by all calls to getBean with the given id), or
+	"prototype" (independent instance resulting from each call to getBean).
+	Default is "singleton". Further scopes, such as "request" or "session",
+	might be supported by extended bean factories (e.g. in a web environment).
+							]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- 'list' and 'set' collection type -->
+    <xsd:complexType name="listOrSetType">
+        <xsd:complexContent>
+            <xsd:extension base="bean:collectionType">
+                <xsd:group ref="collectionElements"/>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <!-- Collection Elements -->
+    <xsd:group name="collectionElements">
+        <xsd:sequence>
+            <xsd:element ref="bean:description" minOccurs="0"/>
+            <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                <xsd:element ref="for"/>
+                <xsd:element ref="bean:bean"/>
+                <xsd:element ref="bean:ref"/>
+                <xsd:element ref="bean:idref"/>
+                <xsd:element ref="bean:value"/>
+                <xsd:element ref="bean:null"/>
+                <xsd:element ref="bean:array"/>
+                <xsd:element ref="bean:list"/>
+                <xsd:element ref="bean:set"/>
+                <xsd:element ref="map"/>
+                <xsd:element ref="bean:props"/>
+                <xsd:any namespace="##other" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:group>
 </xsd:schema>

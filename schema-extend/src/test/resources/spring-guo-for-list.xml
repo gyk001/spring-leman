@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:guo="http://guoyukun.cn/schema/leman/guo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://guoyukun.cn/schema/leman/guo http://guoyukun.cn/schema/leman/guo/guo.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:map id="map1">
+        <entry key="k" value="map1"/>
+    </util:map>
+
+    <util:map id="map2">
+        <entry key="k" value="map2"/>
+    </util:map>
+    <util:map id="map3">
+        <entry key="k" value="map3"/>
+    </util:map>
+    <util:list id="list">
+        <ref bean="map1"/>
+        <ref bean="map2"/>
+    </util:list>
+
+    <guo:list id="list2">
+        <guo:for from="2" to="4">
+            <ref bean="map{{index}}"/>
+        </guo:for>
+        <ref bean="map1"/>
+    </guo:list>
+
+</beans>

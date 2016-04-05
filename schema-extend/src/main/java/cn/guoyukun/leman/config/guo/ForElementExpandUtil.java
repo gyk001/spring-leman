@@ -1,5 +1,6 @@
 package cn.guoyukun.leman.config.guo;
 
+import cn.guoyukun.leman.config.DomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.xml.ParserContext;
@@ -18,8 +19,31 @@ import java.util.List;
  * Created by guoyukun on 2016/4/5.
  */
 public class ForElementExpandUtil {
-
+    private static final String SPRING_UTIL_URI = "http://www.springframework.org/schema/util";
     private static final Logger LOG = LoggerFactory.getLogger(ForElementExpandUtil.class);
+
+    public static void replaceForTagElements (Element element, ParserContext parserContext){
+        element.getOwnerDocument().renameNode(element, SPRING_UTIL_URI, element.getLocalName());
+        NodeList childNodes = element.getChildNodes();
+        int childLen = childNodes.getLength();
+        List<Node> allReplacedEntrys = new ArrayList<Node>();
+        // 遍历map节点的所有子节点
+        for(int i=0; i<childLen; i++){
+            Node childNode = childNodes.item(i);
+            // 子节点如果为guo:for
+            if(Node.ELEMENT_NODE == childNode.getNodeType() && "for".equals(childNode.getLocalName())){
+                List<Element> replacedElements = ForElementExpandUtil.getExpandElement((Element) childNode, parserContext);
+                // 不能用展开后的xml替换for节点，替换过程中childNodes会动态变换出现问题
+                allReplacedEntrys.addAll(replacedElements);
+            }else{
+                allReplacedEntrys.add(childNode);
+            }
+        }
+        // 先移除所有的，再添加全部
+        DomUtil.removeAll(element);
+        DomUtil.addAll(element, allReplacedEntrys);
+    }
+
     public static List<Element> getExpandElement(Element forEle, ParserContext parserContext){
         String fromVal = forEle.getAttribute("from");
         String toVal = forEle.getAttribute("to");
