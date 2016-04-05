@@ -1,6 +1,6 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
-import com.guoyukun.leman.config.DomUtil;
+import cn.guoyukun.leman.config.DomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.MapFactoryBean;

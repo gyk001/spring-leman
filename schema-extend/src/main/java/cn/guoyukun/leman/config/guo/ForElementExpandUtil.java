@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

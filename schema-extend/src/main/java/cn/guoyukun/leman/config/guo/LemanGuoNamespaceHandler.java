@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 

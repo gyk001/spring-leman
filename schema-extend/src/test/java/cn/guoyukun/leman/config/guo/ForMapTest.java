@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;

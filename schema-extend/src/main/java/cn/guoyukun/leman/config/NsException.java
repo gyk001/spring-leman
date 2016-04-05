@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config;
+package cn.guoyukun.leman.config;
 
 public class NsException extends RuntimeException {
 

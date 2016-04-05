@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config;
+package cn.guoyukun.leman.config;
 
 import org.w3c.dom.Node;
 

@@ -6,7 +6,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.guoyukun" level="debug" additivity="false">
+    <logger name="cn.guoyukun" level="debug" additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
 
