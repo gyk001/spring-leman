@@ -1,23 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns="http://guoyukun.cn/schema/leman/guo"
             xmlns:bean="http://www.springframework.org/schema/beans"
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tool="http://www.springframework.org/schema/tool"
             targetNamespace="http://guoyukun.cn/schema/leman/guo"
-            elementFormDefault="qualified" attributeFormDefault="unqualified">
+            elementFormDefault="qualified" attributeFormDefault="unqualified"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd">
     <xsd:import namespace="http://www.springframework.org/schema/beans"
                 schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd"/>
 
     <xsd:complexType name="forType">
         <xsd:choice minOccurs="1" maxOccurs="unbounded">
             <xsd:element ref="bean:bean"/>
+            <xsd:element ref="bean:entry"/>
         </xsd:choice>
         <xsd:attribute name="id" type="xsd:string" use="optional"/>
         <xsd:attribute name="from" type="xsd:int" use="required"/>
         <xsd:attribute name="to" type="xsd:int" use="required"/>
-        <xsd:attribute name="var" type="xsd:string" use="optional" default="index"/>
-        <xsd:attribute name="desc" type="xsd:string" use="optional"/>
+        <xsd:attribute name="placeholder" type="xsd:string" use="optional" default="index"/>
+        <xsd:attribute name="desc" type="xsd:string" use="optional" default=""/>
     </xsd:complexType>
 
     <xsd:element name="for" type="forType"/>
+
+    <!-- 'map' element type -->
+    <xsd:complexType name="mapType">
+        <xsd:complexContent>
+            <xsd:extension base="bean:collectionType">
+                <xsd:sequence>
+                    <xsd:element ref="bean:description" minOccurs="0"/>
+                    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+                        <xsd:element ref="bean:entry"/>
+                        <xsd:element ref="for"/>
+                    </xsd:choice>
+                </xsd:sequence>
+                <xsd:attribute name="key-type" type="xsd:string">
+                    <xsd:annotation>
+                        <xsd:documentation source="java:java.lang.Class"><![CDATA[
+	The default Java type for nested entry keys. Must be a fully qualified
+	class name.
+						]]></xsd:documentation>
+                    </xsd:annotation>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+
+    <xsd:element name="map">
+        <xsd:annotation>
+            <xsd:documentation source="java:org.springframework.beans.factory.config.MapFactoryBean">
+                Builds a Map instance of the specified type, populated with the specified content.
+            </xsd:documentation>
+            <xsd:appinfo>
+                <tool:annotation>
+                    <tool:exports type="java.util.Map"/>
+                </tool:annotation>
+            </xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="mapType">
+                    <xsd:attribute name="id" type="xsd:string"/>
+                    <xsd:attribute name="map-class" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:appinfo>
+                                <tool:annotation>
+                                    <tool:expected-type type="java.lang.Class"/>
+                                    <tool:assignable-to type="java.util.Map"/>
+                                </tool:annotation>
+                            </xsd:appinfo>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="scope" type="xsd:string">
+                        <xsd:annotation>
+                            <xsd:documentation><![CDATA[
+	The scope of this collection bean: typically "singleton" (one shared instance,
+	which will be returned by all calls to getBean with the given id), or
+	"prototype" (independent instance resulting from each call to getBean).
+	Default is "singleton". Further scopes, such as "request" or "session",
+	might be supported by extended bean factories (e.g. in a web environment).
+							]]></xsd:documentation>
+                        </xsd:annotation>
+                    </xsd:attribute>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
 
 </xsd:schema>

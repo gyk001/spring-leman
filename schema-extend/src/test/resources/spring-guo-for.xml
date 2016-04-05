@@ -12,20 +12,20 @@
         <entry key="2" value="mjq"/>
     </util:map>
 
-    <guo:for id="xxxww" from="1" to="4" var="index" desc="循环测试">
-        <bean id="SymbolMap{{index}}" class="java.util.HashMap">
+    <guo:for id="xxxww" from="1" to="4" placeholder="idx" desc="循环测试">
+        <bean id="SymbolMap{{idx}}" class="java.util.HashMap">
             <constructor-arg>
                 <map>
-                    <entry key="a" value="b{{index}}"/>
+                    <entry key="a" value="b{{idx}}"/>
                     <entry key="b" value-ref="idcAliasMapping"/>
                 </map>
             </constructor-arg>
         </bean>
-        <bean id="SymbolMap-{{index}}" class="java.util.HashMap">
+        <bean id="SymbolMap-{{idx}}" class="java.util.HashMap">
             <constructor-arg>
                 <map>
-                    <entry key="key{{index}}" value="b"/>
-                    <entry key="forInnerRef" value-ref="SymbolMap{{index}}"/>
+                    <entry key="key{{idx}}" value="b"/>
+                    <entry key="forInnerRef" value-ref="SymbolMap{{idx}}"/>
                 </map>
             </constructor-arg>
         </bean>
