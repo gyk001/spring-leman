@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config;
+package cn.guoyukun.leman.config;
 
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;

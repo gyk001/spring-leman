@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import java.util.List;
 public class ForTagAdapter {
     private int from;
     private int to;
-    private String var;
+    private String placeholder;
     private String desc;
     private List<String> beanNames;
 
@@ -28,14 +28,6 @@ public class ForTagAdapter {
         this.to = to;
     }
 
-    public String getVar() {
-        return var;
-    }
-
-    public void setVar(String var) {
-        this.var = var;
-    }
-
     public String getDesc() {
         return desc;
     }
@@ -52,12 +44,20 @@ public class ForTagAdapter {
         this.beanNames = beanNames;
     }
 
+    public String getPlaceholder() {
+        return placeholder;
+    }
+
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
+    }
+
     @Override
     public String toString() {
         return "ForTagAdapter{" +
                 "from=" + from +
                 ", to=" + to +
-                ", var='" + var + '\'' +
+                ", placeholder='" + placeholder + '\'' +
                 ", desc='" + desc + '\'' +
                 ", beanNames=" + beanNames +
                 '}';

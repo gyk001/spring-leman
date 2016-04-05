@@ -1,4 +1,4 @@
-package com.guoyukun.leman.config.guo;
+package cn.guoyukun.leman.config.guo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,4 +35,6 @@ private static final Logger LOG = LoggerFactory.getLogger(ForTest.class);
         LOG.info(">> {}", inner2);
         LOG.info(">> {}", inner3);
     }
+
+
 }
