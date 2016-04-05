@@ -12,7 +12,6 @@
     <xsd:complexType name="forType">
         <xsd:choice minOccurs="1" maxOccurs="unbounded">
             <xsd:element ref="bean:bean"/>
-            <xsd:element ref="bean:entry"/>
         </xsd:choice>
         <xsd:attribute name="id" type="xsd:string" use="optional"/>
         <xsd:attribute name="from" type="xsd:int" use="required"/>
@@ -23,6 +22,17 @@
 
     <xsd:element name="for" type="forType"/>
 
+    <xsd:complexType name="forEntryType">
+        <xsd:choice minOccurs="1" maxOccurs="unbounded">
+            <xsd:element ref="bean:entry"/>
+        </xsd:choice>
+        <xsd:attribute name="id" type="xsd:string" use="optional"/>
+        <xsd:attribute name="from" type="xsd:int" use="required"/>
+        <xsd:attribute name="to" type="xsd:int" use="required"/>
+        <xsd:attribute name="placeholder" type="xsd:string" use="optional" default="index"/>
+        <xsd:attribute name="desc" type="xsd:string" use="optional" default=""/>
+    </xsd:complexType>
+
     <!-- 'map' element type -->
     <xsd:complexType name="mapType">
         <xsd:complexContent>
@@ -31,7 +41,7 @@
                     <xsd:element ref="bean:description" minOccurs="0"/>
                     <xsd:choice minOccurs="0" maxOccurs="unbounded">
                         <xsd:element ref="bean:entry"/>
-                        <xsd:element ref="for"/>
+                        <xsd:element name="for" type="forEntryType"/>
                     </xsd:choice>
                 </xsd:sequence>
                 <xsd:attribute name="key-type" type="xsd:string">
