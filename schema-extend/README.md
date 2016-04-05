@@ -44,3 +44,32 @@ for标签内部允许嵌套任意bean标签，可循环生成Bean，且提供循
     </bean>      
 ```
 
+## map标签
+
+```xml
+    <guo:map id="indenpentMap" map-class="java.util.TreeMap">
+        <guo:for from="1" to="3" placeholder="index">
+            <entry key="ka-{{index}}" value="va-{{index}}" ></entry>
+            <entry key="kaz-{{index}}" value="vaz-{{index}}" ></entry>
+        </guo:for>
+        <guo:for from="1" to="3" desc="b">
+            <entry key="kb-{{index}}" value="vb-{{index}}" ></entry>
+        </guo:for>
+    </guo:map>
+
+```
+
+等同于
+
+```xml
+<util:map id="indenpentMap" map-class="java.util.TreeMap">
+	<entry key="ka-1" value="va-1"/>
+	<entry key="kaz-1" value="vaz-1"/>
+	<entry key="ka-2" value="va-2"/>
+	<entry key="kaz-2" value="vaz-2"/>
+	<entry key="kb-1" value="vb-1"/>
+	<entry key="kb-2" value="vb-2"/>
+</util:map>
+
+```
+
