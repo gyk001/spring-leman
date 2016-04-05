@@ -2,7 +2,9 @@ package cn.guoyukun.leman.config.guo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.config.ListFactoryBean;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractSingleBeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
@@ -10,6 +12,7 @@ import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -22,6 +25,15 @@ public class LemanGuoListBeanDefinitionParser extends AbstractSingleBeanDefiniti
 	@Override
 	protected Class getBeanClass(Element element) {
 		return ListFactoryBean.class;
+	}
+
+	@Override
+	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws BeanDefinitionStoreException {
+		String id = super.resolveId(element, definition, parserContext);
+		if(StringUtils.hasText(id)){
+			return id;
+		}
+		return "list-"+ UUID.randomUUID().toString();
 	}
 
 	@Override
