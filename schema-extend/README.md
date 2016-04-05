@@ -73,3 +73,24 @@ for标签内部允许嵌套任意bean标签，可循环生成Bean，且提供循
 
 ```
 
+## List
+
+```xml
+    <guo:list id="list2">
+        <guo:for from="2" to="4">
+            <ref bean="map{{index}}"/>
+        </guo:for>
+        <ref bean="map1"/>
+    </guo:list>
+
+```
+
+等同于
+
+```xml
+<util:list id="list2">
+	<ref bean="map2"/>
+	<ref bean="map3"/>
+	<ref bean="map1"/>
+</util:list>
+```
