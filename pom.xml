@@ -158,7 +158,6 @@
                     </executions>
                     <configuration>
                         <encoding>${project.build.sourceEncoding}</encoding>
-                        <additionalparam>-Xdoclint:none</additionalparam>
                     </configuration>
 
                 </plugin>
@@ -204,5 +203,33 @@
 
         </pluginManagement>
     </build>
-
+    <profiles>
+        <profile>
+            <id>doclint-java8-disable</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>2.9</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <encoding>${project.build.sourceEncoding}</encoding>
+                            <additionalparam>-Xdoclint:none</additionalparam>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
