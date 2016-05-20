@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:guo="http://guoyukun.cn/schema/leman/guo"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://guoyukun.cn/schema/leman/guo http://guoyukun.cn/schema/leman/guo/guo-1.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="props" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_NEVER" />
+        <property name="nullValue" value="null"/>
+        <property name="ignoreResourceNotFound" value="false" />
+        <property name="locations">
+            <list>
+                <value>classpath:/cond.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <guo:cond test="">
+        <bean id="testEmpty" class="java.util.HashMap">
+            <constructor-arg>
+                <map>
+                    <entry key="a" value="b{{idx}}"/>
+                    <entry key="b" value-ref="idcAliasMapping"/>
+                </map>
+            </constructor-arg>
+        </bean>
+    </guo:cond>
+
+    <guo:cond test="ok">
+        <bean id="testOK" class="java.util.HashMap">
+            <constructor-arg>
+                <map>
+                    <entry key="a" value="b{{idx}}"/>
+                    <entry key="b" value-ref="idcAliasMapping"/>
+                </map>
+            </constructor-arg>
+        </bean>
+    </guo:cond>
+
+</beans>

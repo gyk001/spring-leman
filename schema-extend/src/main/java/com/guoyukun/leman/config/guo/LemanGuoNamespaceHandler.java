@@ -6,5 +6,6 @@ public class LemanGuoNamespaceHandler extends NamespaceHandlerSupport {
 	public void init() {
 		registerBeanDefinitionParser("for", new LemanGuoForBeanDefinitionParser());
 		registerBeanDefinitionParser("map", new LemanGuoMapBeanDefinitionParser());
+		registerBeanDefinitionParser("cond", new LemanGuoCondBeanDefinitionParser());
 	}
 }

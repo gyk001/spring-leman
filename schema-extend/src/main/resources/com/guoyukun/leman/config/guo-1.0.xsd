@@ -88,4 +88,15 @@
         </xsd:complexType>
     </xsd:element>
 
+
+
+
+    <xsd:element name="cond">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:any minOccurs="0"/>
+            </xsd:sequence>
+            <xsd:attribute name="test" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>
