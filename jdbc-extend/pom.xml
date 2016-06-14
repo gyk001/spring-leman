@@ -3,7 +3,7 @@
     <parent>
         <groupId>cn.guoyukun</groupId>
         <artifactId>spring-leman</artifactId>
-        <version>1.0.3</version>
+        <version>1.0.4-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>leman-jdbc-extend</artifactId>
