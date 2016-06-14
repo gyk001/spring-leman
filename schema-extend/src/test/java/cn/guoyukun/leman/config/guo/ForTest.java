@@ -16,19 +16,19 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring-guo-for.xml"})
 public class ForTest {
-private static final Logger LOG = LoggerFactory.getLogger(ForTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ForTest.class);
     @Resource
     private ApplicationContext ctx;
 
     @Test
-    public void testFor(){
-        Object o =ctx.getBean("xxxww");
+    public void testFor() {
+        Object o = ctx.getBean("xxxww");
         LOG.info(">> {}", o);
 
-        Object inner2 =ctx.getBean("SymbolMap-2");
-        Object inner3 =ctx.getBean("SymbolMap-3");
-        Object inner22 =ctx.getBean("SymbolMap-2");
-        Object inner33 =ctx.getBean("SymbolMap-3");
+        Object inner2 = ctx.getBean("SymbolMap-2");
+        Object inner3 = ctx.getBean("SymbolMap-3");
+        Object inner22 = ctx.getBean("SymbolMap-2");
+        Object inner33 = ctx.getBean("SymbolMap-3");
 
         LOG.info(">> {}", inner22);
         LOG.info(">> {}", inner33);

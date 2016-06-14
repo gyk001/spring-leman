@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -24,15 +25,17 @@
     </licenses>
 
     <modules>
+        <module>core-extend</module>
         <module>schema-extend</module>
+        <module>jdbc-extend</module>
     </modules>
 
     <scm>
         <connection>scm:git:https://github.com/gyk001/spring-leman.git</connection>
         <developerConnection>scm:git:https://github.com/gyk001/spring-leman.git</developerConnection>
         <url>https://github.com/gyk001/spring-leman</url>
-      <tag>HEAD</tag>
-  </scm>
+        <tag>HEAD</tag>
+    </scm>
 
     <issueManagement>
         <system>github</system>
@@ -97,12 +100,12 @@
     </dependencyManagement>
     <build>
         <plugins>
-                <plugin>
-                    <artifactId>maven-release-plugin</artifactId>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-gpg-plugin</artifactId>
+            </plugin>
         </plugins>
         <pluginManagement>
             <plugins>
@@ -111,7 +114,8 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>2.6</version>
                     <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding><!-- 指定编码格式，否则在DOS下运行mvn命令时当发生文件资源copy时将使用系统默认使用GBK编码 -->
+                        <encoding>${project.build.sourceEncoding}
+                        </encoding><!-- 指定编码格式，否则在DOS下运行mvn命令时当发生文件资源copy时将使用系统默认使用GBK编码 -->
                     </configuration>
                 </plugin>
                 <plugin>

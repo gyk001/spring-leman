@@ -7,17 +7,13 @@
         <version>1.0.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>leman-schema-extend</artifactId>
-    <name>leman-schema-extend</name>
-    <description>Spring schema extends</description>
+    <artifactId>leman-core-extend</artifactId>
+    <name>leman-core-extend</name>
+    <description>Spring core extends</description>
     <url>https://github.com/gyk001/spring-leman</url>
     <properties>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>xml-apis</groupId>
-            <artifactId>xml-apis</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -41,9 +37,10 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!-- for test -->
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

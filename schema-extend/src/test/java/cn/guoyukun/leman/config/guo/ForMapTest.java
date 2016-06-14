@@ -19,12 +19,12 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring-guo-for-entry.xml"})
 public class ForMapTest {
-private static final Logger LOG = LoggerFactory.getLogger(ForMapTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ForMapTest.class);
     @Resource
     private ApplicationContext ctx;
 
     @Test
-    public void testFor(){
+    public void testFor() {
         Map o = ctx.getBean("indenpentMap", Map.class);
         LOG.info(">> {}", ToStringBuilder.reflectionToString(o));
         MapUtils.debugPrint(System.out, null, o);

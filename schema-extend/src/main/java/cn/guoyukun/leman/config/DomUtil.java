@@ -10,13 +10,13 @@ import java.util.List;
 public class DomUtil {
 
     public static void removeAll(Node node) {
-        while (node.hasChildNodes()){
+        while (node.hasChildNodes()) {
             node.removeChild(node.getFirstChild());
         }
     }
 
-    public static void addAll(Node parent, List<Node> append){
-        for(Node node: append){
+    public static void addAll(Node parent, List<Node> append) {
+        for (Node node : append) {
             parent.appendChild(node);
         }
     }

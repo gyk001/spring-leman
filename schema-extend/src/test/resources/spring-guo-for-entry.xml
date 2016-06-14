@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:guo="http://guoyukun.cn/schema/leman/guo"
+<beans xmlns:guo="http://guoyukun.cn/schema/leman/guo"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://guoyukun.cn/schema/leman/guo http://guoyukun.cn/schema/leman/guo/guo-1.0.xsd
-        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
-
+        http://guoyukun.cn/schema/leman/guo http://guoyukun.cn/schema/leman/guo/guo-1.0.xsd">
 
 
     <guo:map id="indenpentMap" map-class="java.util.TreeMap">
         <guo:for from="1" to="3" placeholder="index">
-            <entry key="ka-{{index}}" value="va-{{index}}" ></entry>
-            <entry key="kaz-{{index}}" value="vaz-{{index}}" ></entry>
+            <entry key="ka-{{index}}" value="va-{{index}}"></entry>
+            <entry key="kaz-{{index}}" value="vaz-{{index}}"></entry>
         </guo:for>
         <guo:for from="1" to="3" desc="b">
-            <entry key="kb-{{index}}" value="vb-{{index}}" ></entry>
+            <entry key="kb-{{index}}" value="vb-{{index}}"></entry>
         </guo:for>
     </guo:map>
 

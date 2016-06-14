@@ -18,14 +18,14 @@ import java.util.Map;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:/spring-guo-for-list.xml"})
 public class ForListTest {
-private static final Logger LOG = LoggerFactory.getLogger(ForListTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ForListTest.class);
     @Resource
     private ApplicationContext ctx;
 
     @Test
-    public void testFor(){
+    public void testFor() {
         List<Map> o = ctx.getBean("list2", List.class);
-        for (int i=0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
             Object v = o.get(i).get("k");
             LOG.info("{}>> {}", o.get(i), v);
         }
@@ -36,7 +36,7 @@ private static final Logger LOG = LoggerFactory.getLogger(ForListTest.class);
         //LOG.info(">> {}", ToStringBuilder.reflectionToString(o.get(2)));
 
         //MapUtils.debugPrint(System.out, null, o);
-     //   LOG.info("key1 {}", o.get("k-1"));
+        //   LOG.info("key1 {}", o.get("k-1"));
 //
 //        Object inner2 =ctx.getBean("SymbolMap-2");
 //        Object inner3 =ctx.getBean("SymbolMap-3");

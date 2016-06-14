@@ -19,51 +19,51 @@ import java.util.UUID;
  */
 public class LemanGuoListBeanDefinitionParser extends AbstractSingleBeanDefinitionParser {
 
-	private static final String SCOPE_ATTRIBUTE = "scope";
-	private static final Logger LOG = LoggerFactory.getLogger(LemanGuoListBeanDefinitionParser.class);
+    private static final String SCOPE_ATTRIBUTE = "scope";
+    private static final Logger LOG = LoggerFactory.getLogger(LemanGuoListBeanDefinitionParser.class);
 
-	@Override
-	protected Class getBeanClass(Element element) {
-		return ListFactoryBean.class;
-	}
+    @Override
+    protected Class getBeanClass(Element element) {
+        return ListFactoryBean.class;
+    }
 
-	@Override
-	protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws BeanDefinitionStoreException {
-		String id = super.resolveId(element, definition, parserContext);
-		if(StringUtils.hasText(id)){
-			return id;
-		}
-		return "list-"+ UUID.randomUUID().toString();
-	}
+    @Override
+    protected String resolveId(Element element, AbstractBeanDefinition definition, ParserContext parserContext) throws BeanDefinitionStoreException {
+        String id = super.resolveId(element, definition, parserContext);
+        if (StringUtils.hasText(id)) {
+            return id;
+        }
+        return "list-" + UUID.randomUUID().toString();
+    }
 
-	@Override
-	protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
-		ForElementExpandUtil.replaceForTagElements(element, parserContext);
-		// 使用原来spring util标签解析的方式解析替换过的标签
-		parseList(element, parserContext, builder);
-		if(LOG.isDebugEnabled()){
-			String e = ForElementExpandUtil.getNodeString(element);
-			LOG.debug("-------------------------\n {} ---------------------\n", e);
-		}
-	}
+    @Override
+    protected void doParse(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
+        ForElementExpandUtil.replaceForTagElements(element, parserContext);
+        // 使用原来spring util标签解析的方式解析替换过的标签
+        parseList(element, parserContext, builder);
+        if (LOG.isDebugEnabled()) {
+            String e = ForElementExpandUtil.getNodeString(element);
+            LOG.debug("-------------------------\n {} ---------------------\n", e);
+        }
+    }
 
-	/**
-	 * @see org.springframework.beans.factory.xml.UtilNamespaceHandler.ListBeanDefinitionParser
-	 * @param element
-	 * @param parserContext
-	 * @param builder
+    /**
+     * @param element
+     * @param parserContext
+     * @param builder
+     * @see org.springframework.beans.factory.xml.UtilNamespaceHandler.ListBeanDefinitionParser
      */
-	protected void parseList(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
-		String listClass = element.getAttribute("list-class");
-		List parsedList = parserContext.getDelegate().parseListElement(element, builder.getRawBeanDefinition());
-		builder.addPropertyValue("sourceList", parsedList);
-		if (StringUtils.hasText(listClass)) {
-			builder.addPropertyValue("targetListClass", listClass);
-		}
-		String scope = element.getAttribute(SCOPE_ATTRIBUTE);
-		if (StringUtils.hasLength(scope)) {
-			builder.setScope(scope);
-		}
-	}
+    protected void parseList(Element element, ParserContext parserContext, BeanDefinitionBuilder builder) {
+        String listClass = element.getAttribute("list-class");
+        List parsedList = parserContext.getDelegate().parseListElement(element, builder.getRawBeanDefinition());
+        builder.addPropertyValue("sourceList", parsedList);
+        if (StringUtils.hasText(listClass)) {
+            builder.addPropertyValue("targetListClass", listClass);
+        }
+        String scope = element.getAttribute(SCOPE_ATTRIBUTE);
+        if (StringUtils.hasLength(scope)) {
+            builder.setScope(scope);
+        }
+    }
 
 }

@@ -46,7 +46,7 @@ public abstract class AbstractLemanBeanDefinitionParser extends AbstractSimpleBe
      * @param defaultValue 默认值
      */
     protected void addConstructorArgVal(BeanDefinitionBuilder builder, Element element, String property,
-            Object defaultValue) {
+                                        Object defaultValue) {
         String value = element.getAttribute(property);
         if (StringUtils.hasLength(value)) {
             builder.addConstructorArgValue(value);
@@ -91,7 +91,7 @@ public abstract class AbstractLemanBeanDefinitionParser extends AbstractSimpleBe
      * @param required 是否必须
      */
     protected void addConstructorArgRef(BeanDefinitionBuilder builder, Element element, String property,
-            boolean required) {
+                                        boolean required) {
         String value = element.getAttribute(property);
         if (StringUtils.hasLength(value)) {
             builder.addConstructorArgReference(value);
